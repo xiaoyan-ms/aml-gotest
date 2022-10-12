@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: gotest-deployment3
+endpoint_name: gotest-endpoint3
+environment:
+  image: xiaoyanacr.azurecr.io/test/aml-gotest:1012-1
+  inference_config:
+    liveness_route:
+      port: 8000
+      path: /liveness
+    readiness_route:
+      port: 8000
+      path: /readiness
+    scoring_route:
+      port: 8000
+      path: /annotate
+instance_type: Standard_DS2_v2
+instance_count: 1
