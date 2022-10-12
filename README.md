@@ -1,3 +1,18 @@
+
+## Azure resource
+[gotest-endpoint3](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/resource/subscriptions/c830bb7a-83f5-45e3-81fc-3c2053e7d16f/resourceGroups/xiaoyan-group-dev/providers/Microsoft.MachineLearningServices/workspaces/xiaoyan-aml-ws/onlineEndpoints/gotest-endpoint3/overview)
+
+
+## How to call endpoint
+GET https://gotest-endpoint3.westus.inference.ml.azure.com/annotate
+
+```bash
+# get credential
+az ml online-endpoint get-credentials --name gotest-endpoint3  --resource-group xiaoyan-group-dev --workspace-name xiaoyan-aml-ws
+```
+
+## Commands to build & deploy
+
 go get -v -d ./...  
 go build src/*.go  
 
