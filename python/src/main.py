@@ -16,18 +16,17 @@ def liveness():
 def readiness():
     return "ok"
 
-@app.route("/send", methods=["POST"])
+@app.route("/send")
 def send():
-    if request.json is None:
-        raise Exception('no json body')
-    send_to_eventhub('xiaoyan-eh.servicebus.windows.net', "9fd61a68-1faa-4bca-9a4e-8611b254d342", 'aml-py-test', request.json)
-    return jsonify(request.json)
+    msg = request.args.get('msg')
+    send_to_eventhub('xiaoyan-eh.servicebus.windows.net', "9fd61a68-1faa-4bca-9a4e-8611b254d342", 'aml-py-test', msg)
+    return msg
 
 def send_to_eventhub(hostname, client_id, ehname, msg):
     credential = ManagedIdentityCredential(client_id=client_id)
     client = EventHubProducerClient(hostname, ehname, credential)
     batch = client.create_batch()
-    batch.add(EventData(json.dumps(msg)))
+    batch.add(EventData(msg))
     client.send_batch(batch)
 
 

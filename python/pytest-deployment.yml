@@ -1,8 +1,8 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: pytest-deployment3
-endpoint_name: pytest-endpoint3
+name: pytest-deployment4
+endpoint_name: pytest-endpoint4
 environment:
-  image: xiaoyanacr.azurecr.io/test/aml-pytest:1107-1
+  image: xiaoyanacr.azurecr.io/test/aml-pytest:1107-4
   inference_config:
     liveness_route:
       port: 8000
@@ -12,6 +12,6 @@ environment:
       path: /readiness
     scoring_route:
       port: 8000
-      path: /annotate
+      path: /send
 instance_type: Standard_DS2_v2
 instance_count: 1
