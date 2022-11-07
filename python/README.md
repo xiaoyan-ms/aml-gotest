@@ -1,3 +1,7 @@
+## Azure resource
+[pytest-endpoint3](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/resource/subscriptions/c830bb7a-83f5-45e3-81fc-3c2053e7d16f/resourceGroups/xiaoyan-group-dev/providers/Microsoft.MachineLearningServices/workspaces/xiaoyan-aml-ws/onlineEndpoints/pytest-endpoint3/overview)
+
+
 ## Commands to build & deploy
 
 az login  
