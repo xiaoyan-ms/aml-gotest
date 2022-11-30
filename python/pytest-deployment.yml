@@ -12,6 +12,6 @@ environment:
       path: /readiness
     scoring_route:
       port: 8000
-      path: /send
+      path: /hostname
 instance_type: Standard_DS2_v2
 instance_count: 1

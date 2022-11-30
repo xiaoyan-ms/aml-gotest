@@ -1,6 +1,7 @@
 
 
 import json
+import os
 from flask import Flask, jsonify, request
 from azure.identity import ManagedIdentityCredential
 from azure.eventhub import EventHubProducerClient, EventData, EventDataBatch
@@ -21,6 +22,10 @@ def send():
     msg = request.args.get('msg')
     send_to_eventhub('xiaoyan-eh.servicebus.windows.net', "9fd61a68-1faa-4bca-9a4e-8611b254d342", 'aml-py-test', msg)
     return msg
+
+@app.route("/hostname")
+def hostname():
+    return os.uname()[1]
 
 def send_to_eventhub(hostname, client_id, ehname, msg):
     credential = ManagedIdentityCredential(client_id=client_id)
