@@ -1,8 +1,8 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: pytest-deployment4
-endpoint_name: pytest-endpoint4
+name: pytest-deployment5
+endpoint_name: pytest-endpoint5
 environment:
-  image: xiaoyanacr.azurecr.io/test/aml-pytest:1107-4
+  image: xiaoyanacr.azurecr.io/test/aml-pytest:1130-1
   inference_config:
     liveness_route:
       port: 8000
