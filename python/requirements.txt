@@ -1,3 +1,3 @@
 flask
-azure-identity
-azure-eventhub
+azure-identity==1.7.0
+sdk-tmp-1207==0.1.1
