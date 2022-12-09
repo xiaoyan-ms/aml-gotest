@@ -20,46 +20,9 @@ az ml online-deployment create  -f pytest-deployment.yml --all-traffic --resourc
 
 az ml online-endpoint get-credentials --name pytest-endpoint1  --resource-group xiaoyan-group-dev --workspace-name xiaoyan-aml-ws
 
-az deployment group create --mode incremental \
-    --resource-group cm-mop-prod-eastus \
-    --template-file 1b-deploy-deployment.json \
-    --parameters \
-        annotationEhName= \
-        datastore=workspaceblobstore \
-        ehNamespace= \
-        environment=prod \
-        includeCode=True \
-        includeInferenceConfig=False \
-        instanceCount=1 \
-        livenessPath= \
-        livenessPort=0 \
-        maxConcurrentRequestsPerInstance=100 \
-        readinessPath= \
-        readinessPort=0 \
-        mirrorTrafficTargetEndpoint= \
-        scoringPath= \
-        scoringPort=0 \
-        sqlDatabase= \
-        sqlServer= \
-        structuredEventEhName= \
-        auxStructuredEventEhName= \
-        unstructuredEventEhName= \
-        auxUnstructuredEventEhName= \
-        workQueueEhName= \
-        globalResourceGroup=xiaoyan-group-dev \
-        globalUserAssignedIdentity=xiaoyan-mi \
-        scoringScript=score.py \
-        version=1 \
-        condaFileContents=@conda-env.yml \
-        codeDirRelPath=XiaoyanTest/GpuTest/1/code \
-        modelDirRelPath=XiaoyanTest/GpuTest/1/model \
-        deployment=xiaoyan-gputest-v1 \
-        endpoint=xiaoyan-gputest \
-        imageUri=xiaoyanacr.azurecr.io/test/gpu-test:1209-1 \
-        instanceType=Standard_DS2_v2 \
-        name=xiaoyan-gputest \
-        workspace=xiaoyan-aml-ws \
 
+az ml online-endpoint create  -f pygputest-endpoint.yml --resource-group xiaoyan-group-dev --workspace-name xiaoyan-aml-ws  
+az ml online-deployment create  -f pygputest-deployment.yml --all-traffic --resource-group xiaoyan-group-dev --workspace-name xiaoyan-aml-ws  
 
 
 ## Deploy to MOP GPU instance
@@ -72,45 +35,3 @@ docker push  xiaoyanacr.azurecr.io/test/aml-pygputest:1209-1
 az ml online-endpoint create  -f pygputest-endpoint.yml --resource-group cm-mop-prod-eastus --workspace-name cm-mop-aml-eastus
 az ml online-deployment create  -f pygputest-deployment.yml --all-traffic --resource-group cm-mop-prod-eastus --workspace-name cm-mop-aml-eastus
 
-
-az deployment group create --mode incremental \
-    --resource-group cm-mop-prod-eastus \
-    --template-file 1b-deploy-deployment.json \
-    --parameters \
-        annotationEhName= \
-        datastore=workspaceblobstore \
-        ehNamespace= \
-        environment=prod \
-        includeCode=True \
-        includeInferenceConfig=False \
-        instanceCount=1 \
-        livenessPath= \
-        livenessPort=0 \
-        maxConcurrentRequestsPerInstance=100 \
-        readinessPath= \
-        readinessPort=0 \
-        mirrorTrafficTargetEndpoint= \
-        scoringPath= \
-        scoringPort=0 \
-        sqlDatabase= \
-        sqlServer= \
-        structuredEventEhName= \
-        auxStructuredEventEhName= \
-        unstructuredEventEhName= \
-        auxUnstructuredEventEhName= \
-        workQueueEhName= \
-        
-        globalResourceGroup=raiglobalprod \
-        globalUserAssignedIdentity=raiuai \
-        scoringScript=aml_score.py \
-        version=14 \
-
-        condaFileContents=@/tmp/tmpswu2ap7d \
-        codeDirRelPath=RemoteUpload/CodeVulnerability/14/code \
-        modelDirRelPath=RemoteUpload/CodeVulnerability/14/model \
-        deployment=rai-codevulnerability-prod-v14 \
-        endpoint=rai-codevulnerability-prod \
-        imageUri=raiglobalprodacr.azurecr.io/openmpi4.1.0-cuda11.1-cudnn8-ubuntu20.04:40t3 \
-        instanceType=Standard_NC6s_v3 \
-        name=CodeVulnerability \
-        workspace=cm-mop-aml-eastus \
