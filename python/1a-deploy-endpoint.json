@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "authMode": {
+      "type": "string",
+      "allowedValues": ["AADToken", "Key"]
+    },
+    "endpoint": {
+      "type": "string"
+    },
+    "globalResourceGroup": {
+      "type": "string"
+    },
+    "globalUserAssignedIdentity": {
+      "type": "string"
+    },
+    "servesGrpc": {
+      "type": "bool"
+    },
+    "workspace": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "endpointExtraPropsIfServesGrpc": {
+      "MIR_VMAGENT_DEBUG_MIR_MODEL_USE_HTTP2": "true"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces/onlineEndpoints",
+      "apiVersion": "2021-03-01-preview",
+      "name": "[concat(parameters('workspace'), '/', parameters('endpoint'))]",
+      "location": "[resourceGroup().location]",
+      "kind": "Managed",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "[resourceId(parameters('globalResourceGroup'), 'Microsoft.ManagedIdentity/userAssignedIdentities', parameters('globalUserAssignedIdentity'))]": {}
+        }
+      },
+      "dependsOn": [],
+      "properties": {
+        "authMode": "[parameters('authMode')]",
+        "properties": "[if(parameters('servesGrpc'), variables('endpointExtraPropsIfServesGrpc'), json('null'))]"
+      },
+      "tags": {
+        "AllowlistedObjectIds": ""
+      }
+    }
+  ]
+}

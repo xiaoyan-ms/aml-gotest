@@ -1,0 +1,13 @@
+name: deberta
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - pip=22.2.2
+  - pip:
+    - flask
+    - azure-identity==1.7.0
+    - pyraisdk==0.1.0
+    - GPUtil

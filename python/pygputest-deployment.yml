@@ -1,8 +1,8 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: pytest-deployment1
-endpoint_name: pytest-endpoint1
+name: xiaoyan-deployment-gputest2
+endpoint_name: xiaoyan-endpoint-gputest2
 environment:
-  image: xiaoyanacr.azurecr.io/test/aml-pytest:1209-1
+  image: xiaoyanacr.azurecr.io/test/aml-pygputest:1209-1
   inference_config:
     liveness_route:
       port: 8000
@@ -13,5 +13,5 @@ environment:
     scoring_route:
       port: 8000
       path: /execute
-instance_type: Standard_DS2_v2
+instance_type: Standard_NC6s_v3
 instance_count: 1

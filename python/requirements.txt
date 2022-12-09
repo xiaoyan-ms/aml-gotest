@@ -1,3 +1,4 @@
 flask
 azure-identity==1.7.0
-sdk-tmp-1207==0.1.1
+pyraisdk==0.1.0
+GPUtil
