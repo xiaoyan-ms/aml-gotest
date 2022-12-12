@@ -1,17 +1,13 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: pytest-deployment1
-endpoint_name: pytest-endpoint1
-environment:
-  image: xiaoyanacr.azurecr.io/test/aml-pytest:1209-1
-  inference_config:
-    liveness_route:
-      port: 8000
-      path: /liveness
-    readiness_route:
-      port: 8000
-      path: /readiness
-    scoring_route:
-      port: 8000
-      path: /execute
+name: xiaoyan-deployment-pytest14
+endpoint_name: xiaoyan-endpoint-pytest14
+model:
+  path: ./storage/model/
+code_configuration:
+  code: ./storage/code/
+  scoring_script: score.py
+environment: 
+  conda_file: ./storage/environment/conda.yml
+  image: xiaoyanacr.azurecr.io/test/gpu-test:1209-1
 instance_type: Standard_DS2_v2
 instance_count: 1

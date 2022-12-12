@@ -9,8 +9,8 @@ def init():
     pass
 
 def run(data):
-    return execute_python_code(data)
-    
+    r = execute_python_code(data)
+    return r.splitlines()
 
 @contextmanager
 def RedirectIO(stream):

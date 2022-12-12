@@ -7,7 +7,10 @@ channels:
 dependencies:
   - python=3.9.5
   - pip=22.2.2
+  - numpy
+  - pytorch
   - pip:
     - azureml-defaults
     - pyraisdk==0.1.0
     - GPUtil
+    - psutil
