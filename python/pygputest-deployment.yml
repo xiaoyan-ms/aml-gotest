@@ -1,14 +1,14 @@
 
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: xiaoyan-deployment-gputest14
-endpoint_name: xiaoyan-endpoint-gputest14
+name: xiaoyan-deployment-gputest18
+endpoint_name: xiaoyan-endpoint-gputest18
 model:
   path: ./storage/model/
 code_configuration:
   code: ./storage/code/
   scoring_script: score.py
 environment: 
-  conda_file: ./storage/environment/conda.yml
-  image: c6b3779275504e71b742ffc6e7ec5891.azurecr.io/xiaoyantest/gpu-test:1209-1
+  conda_file: ./storage/environment/base_environment.yml
+  image: c6b3779275504e71b742ffc6e7ec5891.azurecr.io/xiaoyantest/openmpi3.1.2-cuda10.2-cudnn8-ubuntu18.04:1213-1
 instance_type: Standard_NC6s_v3
 instance_count: 1

@@ -1,0 +1,5 @@
+FROM mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.2-cudnn8-ubuntu18.04
+
+ENV GUNICORN_CMD_ARGS="--threads 40"
+RUN apt update -y 
+RUN apt install nvidia-utils-515 -y
